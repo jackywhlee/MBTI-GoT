@@ -109,12 +109,17 @@ $( function() {
     console.log(typeResult);
   }
 
+var setHalfVolume = function() {
   var audio = new Audio('./audio/got-song.mp3');
-
+  audio.volume = 0.05;
+  audio.play();
+}
 
   $( '#btn-reset' ).click( reset );
   $( '.btn-quiz' ).click( answer );
   nextQuestion();
-  audio.play();
+  setHalfVolume();
+  // audio.play();
 
 } );
+
