@@ -109,17 +109,36 @@ $( function() {
     console.log(typeResult);
   }
 
-var setHalfVolume = function() {
-  var audio = new Audio('./audio/got-song.mp3');
-  audio.volume = 0.05;
-  audio.play();
-}
+  var setHalfVolume = function() {
+    var audio = new Audio('./audio/got-song.mp3');
+    audio.volume = 0.05;
+    audio.play();
+  }
 
+  var count = 0;
+  var skipInterval;
+
+  var skipQuestion = function () {
+    if (count < 60){
+      console.log("click");
+      $('#very-false').click();
+      count++;
+    } else {
+      console.log("stop");
+      clearInterval(skipInterval);
+      count = 0;
+    }
+  };
+
+  var activateSkip = function () {
+    skipInterval = setInterval(skipQuestion, 50);
+  };
+
+  $( '#skipButton' ).on('click', activateSkip);
   $( '#btn-reset' ).click( reset );
   $( '.btn-quiz' ).click( answer );
   nextQuestion();
   setHalfVolume();
-  // audio.play();
 
 } );
 
